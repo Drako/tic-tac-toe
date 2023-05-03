@@ -3,7 +3,6 @@ authors = ["Felix Bytow <drako@drako.guru>"]
 description = "Tic-tac-toe game"
 edition = "2021"
 license = "MIT"
-license-file = "LICENSE.md"
 name = "tic-tac-toe"
 readme = "README.md"
 repository = "https://github.com/Drako/tic-tac-toe.git"
