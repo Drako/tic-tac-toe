@@ -9,5 +9,13 @@ repository = "https://github.com/Drako/tic-tac-toe.git"
 version = "0.1.0"
 
 [dependencies]
-bevy = { version = "0.10.1", default-features = false, features = ["bevy_asset", "bevy_core_pipeline", "bevy_render", "bevy_sprite", "bevy_text", "bevy_ui", "bevy_winit", "jpeg", "wayland", "x11"] }
 rand = "0.8.5"
+
+[dependencies.bevy]
+version = "0.10.1"
+default-features = false
+features = [
+    "bevy_asset", "bevy_core_pipeline", "bevy_render", "bevy_sprite", "bevy_text", "bevy_ui", "bevy_winit",
+    "jpeg",
+    "wayland", "x11"
+]

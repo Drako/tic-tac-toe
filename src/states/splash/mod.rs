@@ -107,7 +107,7 @@ fn fade_splash_screen(
 
     if progress > LOGO_DURATION {
         sprite.color = Color::rgba(0.0, 0.0, 0.0, 1.0);
-        next_state.set(GameState::Menu);
+        next_state.set(GameState::MainMenu);
         return;
     }
 
@@ -126,7 +126,7 @@ fn skip_if_requested(
 ) {
     if keys.any_just_pressed([KeyCode::Space, KeyCode::Escape, KeyCode::Return]) {
         keys.clear();
-        next_state.set(GameState::Menu);
+        next_state.set(GameState::MainMenu);
         info!("Skipping splash screen on behalf of user");
     }
 }
