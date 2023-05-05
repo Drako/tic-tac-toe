@@ -1,7 +1,8 @@
 use bevy::prelude::*;
 use bevy::render::view::RenderLayers;
-use crate::assets::GameAssets;
+use bevy::window::PrimaryWindow;
 
+use crate::assets::GameAssets;
 use crate::states::{GameState, MenuState};
 use crate::states::menu::ui::spawn_menu;
 
@@ -18,7 +19,8 @@ impl Plugin for MenuPlugin {
             .add_system(enter_main_menu.in_schedule(OnEnter(GameState::MainMenu)))
             .add_system(leave_main_menu.in_schedule(OnExit(GameState::MainMenu)))
             .add_system(setup_menu.in_schedule(OnEnter(MenuState::Visible)))
-            .add_system(teardown_menu.in_schedule(OnExit(MenuState::Visible)));
+            .add_system(teardown_menu.in_schedule(OnExit(MenuState::Visible)))
+            .add_system(resize_menu.in_set(OnUpdate(MenuState::Visible)));
     }
 }
 
@@ -55,4 +57,14 @@ fn teardown_menu(mut commands: Commands, entities_q: Query<Entity, With<MainMenu
     }
 
     info!("Closed menu");
+}
+
+fn resize_menu(
+    mut menu_q: Query<&mut Style, With<MainMenu>>,
+    window_q: Query<&Window, With<PrimaryWindow>>,
+) {
+    let mut style = menu_q.single_mut();
+    let window = window_q.single();
+    style.size.width = Val::Px(window.resolution.width());
+    style.size.height = Val::Px(window.resolution.height());
 }
